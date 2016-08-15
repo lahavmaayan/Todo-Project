@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="angularTodo">
+    <head>
+        <title>Learn and Understand AngularJS</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta charset="UTF-8">
+
+        <!-- load bootstrap and fontawesome via CDN -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        <style>
+            html, body, input, select, textarea
+            {
+                font-size: 1.05em;
+            }
+            .selected {
+                background-color: black;
+                color:white;
+                font-weight: bold;
+            }
+            .container {
+                width: 500px;
+                clear: both;
+            }
+            .container input {
+                width: 100%;
+                clear: both;
+            }
+            .container table {
+                width: 100%;
+                clear: both
+            }
+        </style>
+        
+        <!-- load angular via CDN -->
+        <script src="//code.angularjs.org/1.3.0-rc.1/angular.min.js"></script>
+        <script src="blah.js"></script>
+    </head>
+    <body>
+
+        <header>
+			<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">AngularJS</a>
+				</div>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+				</ul>
+			</div>
+			</nav>
+		</header>
+
+        <div class="container">
+
+            <div ng-controller="mainController">
+                
+                <h3>Todos:</h3>
+                <table>
+                    <tr>
+                        <th>Todo</th>
+                        <th>Responsible</th>
+                    </tr>
+                    <tr ng-repeat="todo in todos" ng-click="setSelected($index, todo._id)" ng-class="{selected: $index == todoSelected}">
+                        <td> {{todo.todo}} </td>
+                        <td> {{todo.responsible}} </td>
+                    </tr>
+                </table>
+                <input type="submit" ng-click="deleteTodo()" value="Delete Todo" />
+                
+                <br/>
+                <br/>
+                <br/>
+                
+                <h3> Add a new Todo :</h3>
+                <form novalidate class="simple-form">
+                    Todo: <input type="text" ng-model=formData.todo align="right"/><br/>
+                    Responsible: <input type="text" ng-model=formData.responsible /> <br/>
+                    <input type="submit" ng-click="addTodo()" value="add new Todo"/>
+                
+                </form>
+                
+                
+                
+            </div>
+            
+		</div>
+
+    </body>
+</html>
